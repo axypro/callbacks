@@ -23,18 +23,21 @@ class Callb
     {
         self::$call = 'static';
         self::$args = \func_get_args();
+        return self::$call;
     }
 
     public function method()
     {
-        self::$method = 'method';
+        self::$call = 'method';
         self::$args = \func_get_args();
+        return self::$call;
     }
 
     public function __invoke()
     {
-        self::$method = 'invoke';
+        self::$call = 'invoke';
         self::$args = \func_get_args();
+        return self::$call;
     }
 
     /**
@@ -46,6 +49,7 @@ class Callb
             self::$closure = function () {
                 Callb::$call = 'closure';
                 Callb::$args = \func_get_args();
+                return Callb::$call;
             };
         }
         return self::$closure;
