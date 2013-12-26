@@ -16,7 +16,7 @@ class Callback
      * Call a callback
      *
      * @param mixed $callback
-     *        a callback in the exntended format
+     *        a callback in the extended format
      * @param array $args [optional]
      *        an arguments list of the call
      * @return mixed
@@ -35,4 +35,56 @@ class Callback
         }
         return \call_user_func_array($callback['native'], $args);
     }
+
+    /**
+     * Constructor
+     *
+     * @param mixed $native
+     *        a callback in the native format
+     * @param array $args
+     *        a list of bound arguments
+     */
+    public function __construct($native, array $args = null)
+    {
+        $this->native = $native;
+        $this->args = $args;
+    }
+
+    /**
+     * Call the callback
+     *
+     * @return mixed
+     * @throws \axy\callbacks\errors\NotCallable
+     */
+    public function __invoke()
+    {
+        if (!$this->isCallable()) {
+            throw new errors\NotCallable();
+        }
+        $args = \func_get_args();
+        if (!empty($this->args)) {
+            $args = \array_merge($this->args, $args);
+        }
+        return \call_user_func_array($this->native, $args);
+    }
+
+    /**
+     * Check if the callbask is callable
+     *
+     * @return boolean
+     */
+    public function isCallable()
+    {
+        return \is_callable($this->native, false);
+    }
+
+    /**
+     * @var mixed
+     */
+    private $native;
+
+    /**
+     * @var array
+     */
+    private $args;
 }

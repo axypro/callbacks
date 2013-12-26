@@ -11,7 +11,7 @@ use axy\callbacks\tests\nstst\Callb;
 /**
  * @coversDefaultClass axy\callbacks\Callback
  */
-class HelperTest extends \PHPUnit_Framework_TestCase
+class CallbackTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @covers ::call
@@ -133,5 +133,33 @@ class HelperTest extends \PHPUnit_Framework_TestCase
                 'InvalidFormat',
             ],
         ];
+    }
+
+    /**
+     * @covers ::__construct
+     * @covers ::__invoke
+     */
+    public function testInvoke()
+    {
+        $native = [Callb::createInstance(), 'method'];
+        $callback = new Callback($native, [1, 2]);
+        $this->assertSame('method', $callback(3, 4));
+        $this->assertEquals([1, 2, 3, 4], Callb::$args);
+    }
+
+    /**
+     * @covers ::isCallable
+     * @covers ::__invoke
+     */
+    public function testIsCallable()
+    {
+        $native1 = [Callb::createInstance(), 'method'];
+        $callback1 = new Callback($native1, [1, 2]);
+        $this->assertTrue($callback1->isCallable());
+        $native2 = [Callb::createInstance(), 'unkmethod'];
+        $callback2 = new Callback($native2, [1, 2]);
+        $this->assertFalse($callback2->isCallable());
+        $this->setExpectedException('axy\callbacks\errors\NotCallable');
+        $callback2(3, 4);
     }
 }
