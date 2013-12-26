@@ -37,6 +37,26 @@ class Callback
     }
 
     /**
+     * Create a native callback
+     *
+     * @param mixed $callback
+     *        an extended callback
+     * @param boolean $forceObj [optional]
+     *        create a Callback instance in any case
+     * @return \axy\callbacks\Callback
+     *         a callback in native format
+     * @throws \axy\callbacks\errors\InvalidFormat
+     */
+    public static function createNative($callback, $forceObj = false)
+    {
+        $callback = Helper::toNative($callback);
+        if (empty($callback['args']) && (!$forceObj)) {
+            return $callback['native'];
+        }
+        return new self($callback['native'], $callback['args']);
+    }
+
+    /**
      * Constructor
      *
      * @param mixed $native

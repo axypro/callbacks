@@ -162,4 +162,25 @@ class CallbackTest extends \PHPUnit_Framework_TestCase
         $this->setExpectedException('axy\callbacks\errors\NotCallable');
         $callback2(3, 4);
     }
+
+    /**
+     * @covers ::createNative
+     */
+    public function testCreateNative()
+    {
+        $callback1 = [Callb::createInstance(), 'method', [1, 2]];
+        $native1 = Callback::createNative($callback1);
+        $this->assertInstanceOf('axy\callbacks\Callback', $native1);
+        $this->assertSame('method', $native1(3));
+        $this->assertEquals([1, 2, 3], Callb::$args);
+        $callback2 = [Callb::createInstance(), 'method'];
+        $native2 = Callback::createNative($callback2);
+        $this->assertEquals($callback2, $native2);
+        $this->assertSame('method', $native2(3));
+        $this->assertEquals([3], Callb::$args);
+        $native3 = Callback::createNative($callback2, true);
+        $this->assertInstanceOf('axy\callbacks\Callback', $native3);
+        $this->assertSame('method', $native3(4));
+        $this->assertEquals([4], Callb::$args);
+    }
 }
