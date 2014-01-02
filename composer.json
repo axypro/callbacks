@@ -15,7 +15,7 @@
     ],
     "require": {
         "php": ">=5.4.0",
-        "axy/errors": "~0.0.2"
+        "axy/errors": "master-dev"
     },
     "autoload": {
         "psr-0": {
