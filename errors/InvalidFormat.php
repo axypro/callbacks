@@ -6,7 +6,7 @@
 namespace axy\callbacks\errors;
 
 /**
- * Invalid format of callback
+ * Invalid format of a callback
  *
  * @author Oleg Grigoriev <go.vasac@gmail.com>
  */

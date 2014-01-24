@@ -8,7 +8,7 @@ namespace axy\callbacks;
 use axy\callbacks\errors\InvalidFormat;
 
 /**
- * The helper for work with a callback format
+ * The helper for work with the callback format
  *
  * @author Oleg Grigoriev <go.vasac@gmail.com>
  */
@@ -18,11 +18,11 @@ class Helper
      * Separates a native callback and bound arguments
      *
      * @param mixed $callback
-     *        an extended format of a callback
+     *        a callback in the extended format
      * @return array
      *         [native => ..., args => array]
      * @throws \axy\callbacks\errors\InvalidFormat
-     *         $callback has invalid format
+     *         the callback has invalid format
      */
     public static function toNative($callback)
     {
@@ -41,7 +41,7 @@ class Helper
     /**
      * @param mixed $callback
      * @return array
-     * @throws \axy\callbacks\errors\InvalidForma
+     * @throws \axy\callbacks\errors\InvalidFormat
      */
     private static function getFromList($callback)
     {
@@ -57,7 +57,7 @@ class Helper
     /**
      * @param mixed $callback
      * @return array
-     * @throws \axy\callbacks\errors\InvalidForma
+     * @throws \axy\callbacks\errors\InvalidFormat
      */
     private static function getFromDict($callback)
     {

@@ -18,9 +18,9 @@ class Callback
      * @param mixed $callback
      *        a callback in the extended format
      * @param array $args [optional]
-     *        an arguments list of the call
+     *        an argument list of the call
      * @return mixed
-     *         a result of call
+     *         the result of the call
      * @throws \axy\callbacks\errors\InvalidFormat
      *         invalid format of the callback
      * @throws \axy\callbacks\errors\NotCallable
@@ -46,6 +46,7 @@ class Callback
      * @return \axy\callbacks\Callback
      *         a callback in native format
      * @throws \axy\callbacks\errors\InvalidFormat
+     *         invalid format of the callback
      */
     public static function createNative($callback, $forceObj = false)
     {
