@@ -5,6 +5,8 @@
 
 namespace axy\callbacks;
 
+use axy\callbacks\errors\NotCallable;
+
 /**
  * The callback extended format
  *
@@ -31,7 +33,7 @@ class Callback
         $callback = Helper::toNative($callback);
         $args = \array_merge($callback['args'], $args ?: []);
         if (!\is_callable($callback['native'], false)) {
-            throw new errors\NotCallable();
+            throw new NotCallable();
         }
         return \call_user_func_array($callback['native'], $args);
     }
@@ -80,7 +82,7 @@ class Callback
     public function __invoke()
     {
         if (!$this->isCallable()) {
-            throw new errors\NotCallable();
+            throw new NotCallable();
         }
         $args = \func_get_args();
         if (!empty($this->args)) {
@@ -96,7 +98,10 @@ class Callback
      */
     public function isCallable()
     {
-        return \is_callable($this->native, false);
+        if ($this->callable === null) {
+            $this->callable = \is_callable($this->native, false);
+        }
+        return $this->callable;
     }
 
     /**
@@ -108,4 +113,9 @@ class Callback
      * @var array
      */
     private $args;
+
+    /**
+     * @var boolean
+     */
+    private $callable;
 }
