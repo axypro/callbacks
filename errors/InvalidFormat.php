@@ -1,6 +1,7 @@
 <?php
 /**
  * @package axy\callbacks
+ * @author Oleg Grigoriev <go.vasac@gmail.com>
  */
 
 namespace axy\callbacks\errors;
@@ -8,16 +9,15 @@ namespace axy\callbacks\errors;
 use axy\errors\InvalidConfig;
 
 /**
- * Invalid format of a callback
- *
- * @author Oleg Grigoriev <go.vasac@gmail.com>
+ * Invalid format of the callback
  */
 class InvalidFormat extends InvalidConfig implements Error
 {
     /**
-     * Constructor
+     * The constructor
      *
      * @param string $errmsg [optional]
+     *        the error message
      * @param \Exception $previous [optional]
      * @param mixed $thrower [optional]
      */

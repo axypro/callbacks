@@ -1,6 +1,7 @@
 <?php
 /**
  * @package axy\callbacks
+ * @author Oleg Grigoriev <go.vasac@gmail.com>
  */
 
 namespace axy\callbacks;
@@ -9,8 +10,6 @@ use axy\callbacks\errors\InvalidFormat;
 
 /**
  * The helper for work with the callback format
- *
- * @author Oleg Grigoriev <go.vasac@gmail.com>
  */
 class Helper
 {

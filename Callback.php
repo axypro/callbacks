@@ -1,6 +1,7 @@
 <?php
 /**
  * @package axy\callbacks
+ * @author Oleg Grigoriev <go.vasac@gmail.com>
  */
 
 namespace axy\callbacks;
@@ -9,13 +10,11 @@ use axy\callbacks\errors\NotCallable;
 
 /**
  * The callback extended format
- *
- * @author Oleg Grigoriev <go.vasac@gmail.com>
  */
 class Callback
 {
     /**
-     * Call a callback
+     * Executes a callback
      *
      * @param mixed $callback
      *        a callback in the extended format
@@ -39,7 +38,7 @@ class Callback
     }
 
     /**
-     * Create a native callback
+     * Creates a native callback
      *
      * @param mixed $callback
      *        an extended callback
@@ -60,7 +59,7 @@ class Callback
     }
 
     /**
-     * Constructor
+     * The constructor
      *
      * @param mixed $native
      *        a callback in the native format
@@ -74,7 +73,7 @@ class Callback
     }
 
     /**
-     * Call the callback
+     * Executes the callback
      *
      * @return mixed
      * @throws \axy\callbacks\errors\NotCallable
@@ -92,7 +91,7 @@ class Callback
     }
 
     /**
-     * Check if the callback is callable
+     * Checks if the callback is callable
      *
      * @return boolean
      */
