@@ -9,12 +9,12 @@ use axy\callbacks\Callback;
 use axy\callbacks\tests\nstst\Callb;
 
 /**
- * @coversDefaultClass axy\callbacks\Callback
+ * coversDefaultClass axy\callbacks\Callback
  */
 class CallbackTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * @covers ::call
+     * covers ::call
      * @dataProvider providerCall
      * @param mixed $callback
      * @param array $expected
@@ -136,8 +136,8 @@ class CallbackTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers ::__construct
-     * @covers ::__invoke
+     * covers ::__construct
+     * covers ::__invoke
      */
     public function testInvoke()
     {
@@ -148,8 +148,8 @@ class CallbackTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers ::isCallable
-     * @covers ::__invoke
+     * covers ::isCallable
+     * covers ::__invoke
      */
     public function testIsCallable()
     {
@@ -164,7 +164,7 @@ class CallbackTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers ::createNative
+     * covers ::createNative
      */
     public function testCreateNative()
     {

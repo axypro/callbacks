@@ -9,12 +9,12 @@ use axy\callbacks\Helper;
 use axy\callbacks\tests\nstst\Callb;
 
 /**
- * @coversDefaultClass axy\callbacks\Helper
+ * coversDefaultClass axy\callbacks\Helper
  */
 class HelperTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * @covers ::toNative
+     * covers ::toNative
      * @dataProvider providerToNative
      * @param mixed $callback
      * @param array $expected (null - exception)
