@@ -5,12 +5,14 @@
 
 namespace axy\callbacks\errors;
 
+use axy\errors\InvalidConfig;
+
 /**
  * Invalid format of a callback
  *
  * @author Oleg Grigoriev <go.vasac@gmail.com>
  */
-class InvalidFormat extends \axy\errors\InvalidConfig implements Error
+class InvalidFormat extends InvalidConfig implements Error
 {
     /**
      * Constructor

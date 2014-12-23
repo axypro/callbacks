@@ -5,12 +5,14 @@
 
 namespace axy\callbacks\errors;
 
+use \axy\errors\Logic;
+
 /**
  * The callback is not callable
  *
  * @author Oleg Grigoriev <go.vasac@gmail.com>
  */
-class NotCallable extends \axy\errors\Logic implements Error
+class NotCallable extends Logic implements Error
 {
     /**
      * {@inheritdoc}

@@ -92,7 +92,7 @@ class Callback
     }
 
     /**
-     * Check if the callbask is callable
+     * Check if the callback is callable
      *
      * @return boolean
      */

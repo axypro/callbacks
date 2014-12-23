@@ -18,6 +18,7 @@ class CallbackTest extends \PHPUnit_Framework_TestCase
      * @dataProvider providerCall
      * @param mixed $callback
      * @param array $expected
+     * @param array $expectedArgs
      * @param string $exception [optional]
      */
     public function testCall($callback, $expected, $expectedArgs, $exception = null)

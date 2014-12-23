@@ -12,7 +12,7 @@ class Callb
     public static $args;
 
     /**
-     * @return \axy\errors\tests\nstst\Callb
+     * @return \axy\callbacks\tests\nstst\Callb
      */
     public static function createInstance()
     {
