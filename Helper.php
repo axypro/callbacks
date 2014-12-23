@@ -26,13 +26,13 @@ class Helper
      */
     public static function toNative($callback)
     {
-        if (!\is_array($callback)) {
+        if (!is_array($callback)) {
             return self::getNative($callback);
         }
-        if (!\array_key_exists('0', $callback)) {
+        if (!array_key_exists('0', $callback)) {
             return self::getFromDict($callback);
         }
-        if (!\array_key_exists(2, $callback)) {
+        if (!array_key_exists(2, $callback)) {
             return self::getNative($callback);
         }
         return self::getFromList($callback);
@@ -92,13 +92,13 @@ class Helper
      */
     private static function getNative($native, $args = null)
     {
-        if (!\is_array($args)) {
+        if (!is_array($args)) {
             if ($args !== null) {
                 throw new InvalidFormat('Args must be an array');
             }
             $args = [];
         }
-        if (!\is_callable($native, true)) {
+        if (!is_callable($native, true)) {
             throw new InvalidFormat();
         }
         return [

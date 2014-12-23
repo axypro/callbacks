@@ -31,11 +31,11 @@ class Callback
     public static function call($callback, array $args = null)
     {
         $callback = Helper::toNative($callback);
-        $args = \array_merge($callback['args'], $args ?: []);
-        if (!\is_callable($callback['native'], false)) {
+        $args = array_merge($callback['args'], $args ?: []);
+        if (!is_callable($callback['native'], false)) {
             throw new NotCallable();
         }
-        return \call_user_func_array($callback['native'], $args);
+        return call_user_func_array($callback['native'], $args);
     }
 
     /**
@@ -84,11 +84,11 @@ class Callback
         if (!$this->isCallable()) {
             throw new NotCallable();
         }
-        $args = \func_get_args();
+        $args = func_get_args();
         if (!empty($this->args)) {
-            $args = \array_merge($this->args, $args);
+            $args = array_merge($this->args, $args);
         }
-        return \call_user_func_array($this->native, $args);
+        return call_user_func_array($this->native, $args);
     }
 
     /**
@@ -99,7 +99,7 @@ class Callback
     public function isCallable()
     {
         if ($this->callable === null) {
-            $this->callable = \is_callable($this->native, false);
+            $this->callable = is_callable($this->native, false);
         }
         return $this->callable;
     }

@@ -22,21 +22,21 @@ class Callb
     public static function mstatic()
     {
         self::$call = 'static';
-        self::$args = \func_get_args();
+        self::$args = func_get_args();
         return self::$call;
     }
 
     public function method()
     {
         self::$call = 'method';
-        self::$args = \func_get_args();
+        self::$args = func_get_args();
         return self::$call;
     }
 
     public function __invoke()
     {
         self::$call = 'invoke';
-        self::$args = \func_get_args();
+        self::$args = func_get_args();
         return self::$call;
     }
 
