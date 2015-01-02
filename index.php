@@ -13,7 +13,7 @@
 namespace axy\callbacks;
 
 if (!is_file(__DIR__.'/vendor/autoload.php')) {
-    throw new \LogicException('Please: composer.phar install');
+    throw new \LogicException('Please: composer install');
 }
 
 require_once(__DIR__.'/vendor/autoload.php');

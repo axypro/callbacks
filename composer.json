@@ -3,7 +3,8 @@
     "type": "library",
     "description": "Extension of php-callback format",
     "keywords": [
-        "Callback"
+        "Callback",
+        "call_user_func"
     ],
     "homepage": "https://github.com/axypro/callbacks",
     "license": "MIT",
