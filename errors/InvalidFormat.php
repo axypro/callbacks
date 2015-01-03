@@ -16,13 +16,13 @@ class InvalidFormat extends InvalidConfig implements Error
     /**
      * The constructor
      *
-     * @param string $errmsg [optional]
+     * @param string $errorMessage [optional]
      *        the error message
      * @param \Exception $previous [optional]
      * @param mixed $thrower [optional]
      */
-    public function __construct($errmsg = null, \Exception $previous = null, $thrower = null)
+    public function __construct($errorMessage = null, \Exception $previous = null, $thrower = null)
     {
-        parent::__construct('Callback', $errmsg, 0, $previous, $thrower);
+        parent::__construct('Callback', $errorMessage, 0, $previous, $thrower);
     }
 }
