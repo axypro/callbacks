@@ -16,6 +16,7 @@ class Bind
     public function __construct($x = 5)
     {
         $this->setX($x);
+        self::setS($x);
     }
 
     /**

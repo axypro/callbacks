@@ -213,4 +213,37 @@ class CallbackTest extends \PHPUnit_Framework_TestCase
         $this->setExpectedException('axy\callbacks\errors\InvalidFormat');
         return new Callback([1, 'setS'], [2], true);
     }
+
+    public function testCallBindContextInstance()
+    {
+        $instance = new Bind(-3);
+        $callback = [
+            'object' => $instance,
+            'method' => 'setX',
+            'args' => [7],
+            'bind' => true,
+        ];
+        $this->assertSame(-3, Callback::call($callback, [3]));
+        $this->assertSame(10, $instance->getX());
+        unset($callback['object']);
+        $this->setExpectedException('axy\callbacks\errors\InvalidFormat');
+        Callback::call($callback, [3]);
+    }
+
+    public function testCallBindStatic()
+    {
+        $instance = new Bind();
+        $callback = [
+            'class' => 'axy\callbacks\tests\nstst\Bind',
+            'method' => 'setS',
+            'args' => [7],
+            'bind' => true,
+        ];
+        $s = Bind::getS();
+        $this->assertSame($s, Callback::call($callback, [$s + 3]));
+        $this->assertSame($s + 10, $instance->getS());
+        unset($callback['class']);
+        $this->setExpectedException('axy\callbacks\errors\InvalidFormat');
+        Callback::call($callback, [3]);
+    }
 }

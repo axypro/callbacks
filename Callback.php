@@ -31,11 +31,24 @@ class Callback
     public static function call($callback, array $args = null)
     {
         $callback = Helper::toNative($callback);
-        $args = array_merge($callback['args'], $args ?: []);
-        if (!is_callable($callback['native'], false)) {
-            throw new NotCallable();
+        if ($callback['bind']) {
+            $native = $callback['native'];
+            $first = $native[0];
+            if (is_object($first)) {
+                $callback = Helper::bindInstance($first, $native[1], $callback['args']);
+            } elseif (is_string($first)) {
+                $callback = Helper::bindStatic($first, $native[1], $callback['args']);
+            } else {
+                throw new InvalidFormat('Invalid callback for bind context');
+            }
+        } else {
+            $args = array_merge($callback['args'], $args ?: []);
+            $callback = $callback['native'];
+            if (!is_callable($callback, false)) {
+                throw new NotCallable();
+            }
         }
-        return call_user_func_array($callback['native'], $args);
+        return call_user_func_array($callback, $args);
     }
 
     /**

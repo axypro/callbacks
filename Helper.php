@@ -82,13 +82,14 @@ class Helper
      */
     private static function getFromList($callback)
     {
+        $bind = isset($callback[3]) ? (bool)$callback[3] : false;
         if (!isset($callback[1])) {
-            return self::getNative($callback[0], $callback[2]);
+            return self::getNative($callback[0], $callback[2], $bind);
         }
         if ($callback[0] === null) {
-            return self::getNative($callback[1], $callback[2]);
+            return self::getNative($callback[1], $callback[2], $bind);
         }
-        return self::getNative([$callback[0], $callback[1]], $callback[2]);
+        return self::getNative([$callback[0], $callback[1]], $callback[2], $bind);
     }
 
     /**
@@ -99,8 +100,9 @@ class Helper
     private static function getFromDict($callback)
     {
         $args = isset($callback['args']) ? $callback['args'] : [];
+        $bind = isset($callback['bind']) ? (bool)$callback['bind'] : false;
         if (isset($callback['function'])) {
-            return self::getNative($callback['function'], $args);
+            return self::getNative($callback['function'], $args, $bind);
         }
         if (isset($callback['object'])) {
             if (isset($callback['method'])) {
@@ -108,7 +110,7 @@ class Helper
             } else {
                 $callback = $callback['object'];
             }
-            return self::getNative($callback, $args);
+            return self::getNative($callback, $args, $bind);
         }
         if (isset($callback['class'])) {
             if (isset($callback['method'])) {
@@ -116,7 +118,7 @@ class Helper
             } else {
                 throw new InvalidFormat('Class "'.$callback['class'].'" require static method');
             }
-            return self::getNative($callback, $args);
+            return self::getNative($callback, $args, $bind);
         }
         throw new InvalidFormat();
     }
@@ -124,10 +126,11 @@ class Helper
     /**
      * @param mixed $native
      * @param array $args [optional]
+     * @param bool $bind [optional]
      * @return array
      * @throws \axy\callbacks\errors\InvalidFormat
      */
-    private static function getNative($native, $args = null)
+    private static function getNative($native, $args = null, $bind = false)
     {
         if (!is_array($args)) {
             if ($args !== null) {
@@ -135,12 +138,17 @@ class Helper
             }
             $args = [];
         }
-        if (!is_callable($native, true)) {
+        if ($bind) {
+            if (!is_array($native)) {
+                throw new InvalidFormat('Invalid callback for bind context');
+            }
+        } elseif (!is_callable($native, true)) {
             throw new InvalidFormat();
         }
         return [
             'native' => $native,
             'args' => $args,
+            'bind' => $bind,
         ];
     }
 
