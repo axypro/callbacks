@@ -1,3 +1,8 @@
+### Dev-Master
+
+* Bind context
+* Ref & fix
+
 ### 0.0.2 (24.01.2013)
 
 * Composer: PSR-4
