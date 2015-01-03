@@ -38,6 +38,20 @@ class Helper
     }
 
     /**
+     * Binds an instance with its method
+     *
+     * @param object $instance
+     * @param string $method
+     * @param array $args [optional]
+     * @return \Closure
+     */
+    public static function bindInstance($instance, $method, $args = null)
+    {
+        $helper = new self();
+        return $helper->createClosure($instance, $method, $args)->bindTo($instance, get_class($instance));
+    }
+
+    /**
      * @param mixed $callback
      * @return array
      * @throws \axy\callbacks\errors\InvalidFormat
@@ -104,5 +118,29 @@ class Helper
             'native' => $native,
             'args' => $args,
         ];
+    }
+
+    private function __construct()
+    {
+    }
+
+    /**
+     * @param object $instance
+     * @param string $method
+     * @param array $args [optional]
+     * @return \Closure
+     */
+    private function createClosure($instance, $method, $args)
+    {
+        if (empty($args)) {
+            $args = null;
+        }
+        return function () use ($method, $args) {
+            $a = func_get_args();
+            if ($args !== null) {
+                $a = array_merge($a, $args);
+            }
+            return call_user_func_array([$this, $method], $a);
+        };
     }
 }

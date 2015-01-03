@@ -7,6 +7,7 @@ namespace axy\callbacks\tests;
 
 use axy\callbacks\Helper;
 use axy\callbacks\tests\nstst\Callb;
+use axy\callbacks\tests\nstst\Bind;
 
 /**
  * coversDefaultClass axy\callbacks\Helper
@@ -205,5 +206,24 @@ class HelperTest extends \PHPUnit_Framework_TestCase
                 null,
             ],
         ];
+    }
+
+    /**
+     * covers ::bindInstance
+     */
+    public function testBindInstance()
+    {
+        $instance = new Bind(5);
+        $this->assertSame(5, $instance->getX());
+        $callback1 = Helper::bindInstance($instance, 'setX');
+        $this->assertSame(5, \call_user_func($callback1, 10));
+        $this->assertSame(10, $instance->getX());
+        $this->assertSame(10, \call_user_func($callback1, 15));
+        $this->assertSame(15, $instance->getX());
+        $callback2 = Helper::bindInstance($instance, 'setX', [3]);
+        $this->assertSame(15, \call_user_func($callback2, 20));
+        $this->assertSame(23, $instance->getX());
+        $this->assertSame(23, \call_user_func($callback2, 25));
+        $this->assertSame(28, $instance->getX());
     }
 }
