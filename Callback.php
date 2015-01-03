@@ -48,7 +48,7 @@ class Callback
                 throw new NotCallable();
             }
         }
-        return call_user_func_array($callback, $args);
+        return call_user_func_array($callback, $args ?: []);
     }
 
     /**
