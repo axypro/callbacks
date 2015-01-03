@@ -6,6 +6,7 @@
 
 namespace axy\callbacks;
 
+use axy\callbacks\errors\InvalidFormat;
 use axy\callbacks\errors\NotCallable;
 
 /**
@@ -63,13 +64,29 @@ class Callback
      *
      * @param mixed $native
      *        a callback in the native format
-     * @param array $args
+     * @param array $args [optional]
      *        a list of bound arguments
+     * @param boolean $bindContext [optional]
+     * @throws \axy\callbacks\errors\InvalidFormat
      */
-    public function __construct($native, array $args = null)
+    public function __construct($native, array $args = null, $bindContext = false)
     {
         $this->native = $native;
         $this->args = $args;
+        if ($bindContext) {
+            if (!is_array($native)) {
+                throw new InvalidFormat('Invalid callback for bind context');
+            }
+            $first = $native[0];
+            if (\is_object($first)) {
+                $this->bound = Helper::bindInstance($first, $native[1], $args);
+            } elseif (\is_string($first)) {
+                $this->bound = Helper::bindStatic($first, $native[1], $args);
+            } else {
+                throw new InvalidFormat('Invalid callback for bind context');
+            }
+            $this->callable = true;
+        }
     }
 
     /**
@@ -80,6 +97,9 @@ class Callback
      */
     public function __invoke()
     {
+        if ($this->bound) {
+            return call_user_func_array($this->bound, func_get_args());
+        }
         if (!$this->isCallable()) {
             throw new NotCallable();
         }
@@ -112,6 +132,11 @@ class Callback
      * @var array
      */
     private $args;
+
+    /**
+     * @var \Closure
+     */
+    private $bound;
 
     /**
      * @var boolean

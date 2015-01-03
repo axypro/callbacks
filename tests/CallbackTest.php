@@ -7,6 +7,7 @@ namespace axy\callbacks\tests;
 
 use axy\callbacks\Callback;
 use axy\callbacks\tests\nstst\Callb;
+use axy\callbacks\tests\nstst\Bind;
 
 /**
  * coversDefaultClass axy\callbacks\Callback
@@ -183,5 +184,33 @@ class CallbackTest extends \PHPUnit_Framework_TestCase
         $this->assertInstanceOf('axy\callbacks\Callback', $native3);
         $this->assertSame('method', $native3(4));
         $this->assertEquals([4], Callb::$args);
+    }
+
+    /**
+     * covers ::__construct
+     * covers ::__invoke
+     */
+    public function testBindContextInstance()
+    {
+        $instance = new Bind(5);
+        $callback = new Callback([$instance, 'setX'], [2], true);
+        $this->assertSame(5, $callback(10));
+        $this->assertSame(12, $instance->getX());
+        $this->setExpectedException('axy\callbacks\errors\InvalidFormat');
+        return new Callback('is_array', [2], true);
+    }
+
+    /**
+     * covers ::__construct
+     * covers ::__invoke
+     */
+    public function testBindContextStatic()
+    {
+        $callback = new Callback(['axy\callbacks\tests\nstst\Bind', 'setS'], [5], true);
+        $s = Bind::getS();
+        $this->assertSame($s, $callback(11));
+        $this->assertSame(16, Bind::getS());
+        $this->setExpectedException('axy\callbacks\errors\InvalidFormat');
+        return new Callback([1, 'setS'], [2], true);
     }
 }
