@@ -226,4 +226,24 @@ class HelperTest extends \PHPUnit_Framework_TestCase
         $this->assertSame(23, \call_user_func($callback2, 25));
         $this->assertSame(28, $instance->getX());
     }
+
+    /**
+     * covers ::bindStatic
+     */
+    public function testBindStatic()
+    {
+        $s = Bind::getS();
+        $callback1 = Helper::bindStatic('axy\callbacks\tests\nstst\Bind', 'setS');
+        $this->assertSame($s, \call_user_func($callback1, $s + 1));
+        $s++;
+        $this->assertSame($s, Bind::getS());
+        $this->assertSame($s, \call_user_func($callback1, $s + 2));
+        $s += 2;
+        $this->assertSame($s, Bind::getS());
+        $callback2 = Helper::bindStatic('axy\callbacks\tests\nstst\Bind', 'setS', [4]);
+        $this->assertSame($s, \call_user_func($callback2, 20));
+        $this->assertSame(24, Bind::getS());
+        $this->assertSame(24, \call_user_func($callback2, 25));
+        $this->assertSame(29, Bind::getS());
+    }
 }

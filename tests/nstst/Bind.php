@@ -54,7 +54,7 @@ class Bind
     private static function setS($s, $d = 0)
     {
         $r = self::$s;
-        self::$s = $s;
+        self::$s = $s + $d;
         return $r;
     }
 

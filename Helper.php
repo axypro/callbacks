@@ -41,14 +41,38 @@ class Helper
      * Binds an instance with its method
      *
      * @param object $instance
-     * @param string $method
+     * @param string $methodName
      * @param array $args [optional]
      * @return \Closure
      */
-    public static function bindInstance($instance, $method, $args = null)
+    public static function bindInstance($instance, $methodName, $args = null)
     {
         $helper = new self();
-        return $helper->createClosure($instance, $method, $args)->bindTo($instance, get_class($instance));
+        return $helper->createClosure($methodName, $args)->bindTo($instance, get_class($instance));
+    }
+
+    /**
+     * Binds a class with its static method
+     *
+     * @param string $className
+     * @param string $methodName
+     * @param array $args [optional]
+     * @return \Closure
+     */
+    public static function bindStatic($className, $methodName, $args = null)
+    {
+        if (empty($args)) {
+            $args = null;
+        }
+        $native = [$className, $methodName];
+        $callback = function () use ($native, $args) {
+            $a = func_get_args();
+            if ($args !== null) {
+                $a = array_merge($a, $args);
+            }
+            return call_user_func_array($native, $a);
+        };
+        return $callback->bindTo(null, $className);
     }
 
     /**
@@ -125,22 +149,21 @@ class Helper
     }
 
     /**
-     * @param object $instance
-     * @param string $method
+     * @param string $methodName
      * @param array $args [optional]
      * @return \Closure
      */
-    private function createClosure($instance, $method, $args)
+    private function createClosure($methodName, $args)
     {
         if (empty($args)) {
             $args = null;
         }
-        return function () use ($method, $args) {
+        return function () use ($methodName, $args) {
             $a = func_get_args();
             if ($args !== null) {
                 $a = array_merge($a, $args);
             }
-            return call_user_func_array([$this, $method], $a);
+            return call_user_func_array([$this, $methodName], $a);
         };
     }
 }
