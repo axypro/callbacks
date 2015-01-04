@@ -1,17 +1,11 @@
-# axy\callbacks
+# axy\callbacks: the callback extended format
 
-Extension of php-callback format
+ * GitHub: [axypro/callbacks](https://github.com/axypro/callbacks)
+ * Composer: [axypro/callbacks](https://packagist.org/packages/axy/callbacks)
 
-### Documentation
+[Documentation](https://github.com/axypro/callbacks/blob/master/doc/README.md).
 
-[Documentation in Russian](https://github.com/axypro/callbacks/wiki/ru)
+PHP 5.4+
 
-### Install
+Library does not require any dependencies (except composer packages).
 
-`composer require axy/callbacks:~0.0.1`
-
-### Dependencies
-
-Uses PHP 5.4+
-
-Requires [axy\errors](https://github.com/axypro/errors).

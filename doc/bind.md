@@ -38,7 +38,7 @@ Events::fire();
 
 Error:
 
-```php
+```
 call_user_func() expects parameter 1 to be a valid callback, cannot access private method MyClass::onEvent()
 ```
 
@@ -79,7 +79,7 @@ Events::fire();
 ```
 
 Success:
-```php
+```
 Event!
 ```
 
