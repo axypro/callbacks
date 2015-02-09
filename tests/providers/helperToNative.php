@@ -1,8 +1,8 @@
 <?php
 
-use axy\callbacks\tests\nstst\Callb;
+use axy\callbacks\tests\tst\CallB;
 
-$instance = Callb::createInstance();
+$instance = CallB::createInstance();
 
 return [
     [
@@ -22,17 +22,17 @@ return [
         ],
     ],
     [
-        ['axy\callbacks\tests\nstst\Callb', 'mstatic'],
+        ['axy\callbacks\tests\tst\CallB', 'mStatic'],
         [
-            'native' => ['axy\callbacks\tests\nstst\Callb', 'mstatic'],
+            'native' => ['axy\callbacks\tests\tst\CallB', 'mStatic'],
             'args' => [],
             'bind' => false,
         ],
     ],
     [
-        'axy\callbacks\tests\nstst\Callb::mstatic',
+        'axy\callbacks\tests\tst\CallB::mStatic',
         [
-            'native' => 'axy\callbacks\tests\nstst\Callb::mstatic',
+            'native' => 'axy\callbacks\tests\tst\CallB::mStatic',
             'args' => [],
             'bind' => false,
         ],
@@ -46,9 +46,9 @@ return [
         ],
     ],
     [
-        Callb::getClosure(),
+        CallB::getClosure(),
         [
-            'native' => Callb::getClosure(),
+            'native' => CallB::getClosure(),
             'args' => [],
             'bind' => false,
         ],
@@ -62,25 +62,25 @@ return [
         ],
     ],
     [
-        ['axy\callbacks\tests\nstst\Callb', 'mstatic', [4, 5]],
+        ['axy\callbacks\tests\tst\CallB', 'mStatic', [4, 5]],
         [
-            'native' => ['axy\callbacks\tests\nstst\Callb', 'mstatic'],
+            'native' => ['axy\callbacks\tests\tst\CallB', 'mStatic'],
             'args' => [4, 5],
             'bind' => false,
         ],
     ],
     [
-        ['axy\callbacks\tests\nstst\Callb', 'mstatic', [4, 5], true],
+        ['axy\callbacks\tests\tst\CallB', 'mStatic', [4, 5], true],
         [
-            'native' => ['axy\callbacks\tests\nstst\Callb', 'mstatic'],
+            'native' => ['axy\callbacks\tests\tst\CallB', 'mStatic'],
             'args' => [4, 5],
             'bind' => true,
         ],
     ],
     [
-        ['axy\callbacks\tests\nstst\Callb::mstatic', null, [2]],
+        ['axy\callbacks\tests\tst\CallB::mStatic', null, [2]],
         [
-            'native' => 'axy\callbacks\tests\nstst\Callb::mstatic',
+            'native' => 'axy\callbacks\tests\tst\CallB::mStatic',
             'args' => [2],
             'bind' => false,
         ],
@@ -114,9 +114,9 @@ return [
         ],
     ],
     [
-        [null, Callb::getClosure(), [1, 2]],
+        [null, CallB::getClosure(), [1, 2]],
         [
-            'native' => Callb::getClosure(),
+            'native' => CallB::getClosure(),
             'args' => [1, 2],
             'bind' => false,
         ],
@@ -219,19 +219,19 @@ return [
     ],
     [
         [
-            'class' => 'axy\callbacks\tests\nstst\Callb',
-            'method' => 'mstatic',
+            'class' => 'axy\callbacks\tests\tst\CallB',
+            'method' => 'mStatic',
             'args' => [2],
         ],
         [
-            'native' => ['axy\callbacks\tests\nstst\Callb', 'mstatic'],
+            'native' => ['axy\callbacks\tests\tst\CallB', 'mStatic'],
             'args' => [2],
             'bind' => false,
         ],
     ],
     [
         [
-            'class' => 'axy\callbacks\tests\nstst\Callb',
+            'class' => 'axy\callbacks\tests\tst\CallB',
             'args' => [2],
         ],
         null,

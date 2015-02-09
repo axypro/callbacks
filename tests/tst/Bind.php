@@ -3,7 +3,7 @@
  * @package axy\callbacks
  */
 
-namespace axy\callbacks\tests\nstst;
+namespace axy\callbacks\tests\tst;
 
 /**
  * The class to test the binding context

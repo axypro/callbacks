@@ -3,23 +3,23 @@
  * @package axy\callbacks
  */
 
-namespace axy\callbacks\tests\nstst;
+namespace axy\callbacks\tests\tst;
 
-class Callb
+class CallB
 {
     public static $call;
 
     public static $args;
 
     /**
-     * @return \axy\callbacks\tests\nstst\Callb
+     * @return \axy\callbacks\tests\tst\CallB
      */
     public static function createInstance()
     {
         return new self();
     }
 
-    public static function mstatic()
+    public static function mStatic()
     {
         self::$call = 'static';
         self::$args = func_get_args();
@@ -47,9 +47,9 @@ class Callb
     {
         if (!self::$closure) {
             self::$closure = function () {
-                Callb::$call = 'closure';
-                Callb::$args = \func_get_args();
-                return Callb::$call;
+                CallB::$call = 'closure';
+                CallB::$args = \func_get_args();
+                return CallB::$call;
             };
         }
         return self::$closure;

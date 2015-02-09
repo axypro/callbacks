@@ -11,6 +11,8 @@ use axy\callbacks\errors\NotCallable;
 
 /**
  * The callback extended format
+ *
+ * @link https://github.com/axypro/callbacks/blob/master/doc/README.md documentation
  */
 class Callback
 {
