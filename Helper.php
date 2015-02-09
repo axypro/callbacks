@@ -102,25 +102,15 @@ class Helper
         $args = isset($callback['args']) ? $callback['args'] : [];
         $bind = isset($callback['bind']) ? (bool)$callback['bind'] : false;
         if (isset($callback['function'])) {
-            return self::getNative($callback['function'], $args, $bind);
+            $result = self::getNative($callback['function'], $args, $bind);
+        } elseif (isset($callback['object'])) {
+            $result = self::getFromDictByObject($callback, $args, $bind);
+        } elseif (isset($callback['class'])) {
+            $result = self::getFromDictByClass($callback, $args, $bind);
+        } else {
+            throw new InvalidFormat();
         }
-        if (isset($callback['object'])) {
-            if (isset($callback['method'])) {
-                $callback = [$callback['object'], $callback['method']];
-            } else {
-                $callback = $callback['object'];
-            }
-            return self::getNative($callback, $args, $bind);
-        }
-        if (isset($callback['class'])) {
-            if (isset($callback['method'])) {
-                $callback = [$callback['class'], $callback['method']];
-            } else {
-                throw new InvalidFormat('Class "'.$callback['class'].'" require static method');
-            }
-            return self::getNative($callback, $args, $bind);
-        }
-        throw new InvalidFormat();
+        return $result;
     }
 
     /**
@@ -152,6 +142,41 @@ class Helper
         ];
     }
 
+    /**
+     * @param mixed $callback
+     * @param array $args
+     * @param bool $bind
+     * @return array
+     * @throws \axy\callbacks\errors\InvalidFormat
+     */
+    private static function getFromDictByObject($callback, $args, $bind)
+    {
+        if (isset($callback['method'])) {
+            $callback = [$callback['object'], $callback['method']];
+        } else {
+            $callback = $callback['object'];
+        }
+        return self::getNative($callback, $args, $bind);
+    }
+
+    /**
+     * @param mixed $callback
+     * @param array $args
+     * @param bool $bind
+     * @return array
+     * @throws \axy\callbacks\errors\InvalidFormat
+     */
+    private static function getFromDictByClass($callback, $args, $bind)
+    {
+        if (isset($callback['method'])) {
+            $callback = [$callback['class'], $callback['method']];
+        } else {
+            throw new InvalidFormat('Class "'.$callback['class'].'" require static method');
+        }
+        return self::getNative($callback, $args, $bind);
+    }
+
+
     private function __construct()
     {
     }
@@ -160,6 +185,7 @@ class Helper
      * @param string $methodName
      * @param array $args [optional]
      * @return \Closure
+     * @SuppressWarnings(PHPMD.UnusedPrivateMethod) this method called from a callback
      */
     private function createClosure($methodName, $args)
     {

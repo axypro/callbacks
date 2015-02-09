@@ -7,7 +7,7 @@
  * @license https://raw.github.com/axypro/callbacks/master/LICENSE MIT
  * @link https://github.com/axypro/callbacks repository
  * @link https://github.com/axypro/callbacks/blob/master/doc/README.md documentation
- * @link https://packagist.org/packages/axy/callbacks on packagist.org
+ * @link https://packagist.org/packages/axy/callbacks composer
  * @uses PHP5.4+
  */
 
