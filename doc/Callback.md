@@ -1,6 +1,6 @@
 # How to use
 
-To work with extended callback format there is class `axy\callbacks\Callback`.
+To work with the extended callback format there is class `axy\callbacks\Callback`.
 
 ## Variant one
 
@@ -14,7 +14,7 @@ $callback = ['class', 'method', [1, 2, 3]];
 echo Callback::call($callback);
 ```
 
-Format:
+Method format:
 
 ```php
 Callback::call(callable $callback [, array $args]):mixed
@@ -88,4 +88,3 @@ A callback has an invalid format.
 
 A callback is valid, but cannot be executed.
 For example, specified the name of a nonexistent function.
-

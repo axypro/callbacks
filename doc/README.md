@@ -1,7 +1,7 @@
 # axy\callbacks: extension of php-callback
  
  * GitHub: [axypro/callbacks](https://github.com/axypro/callbacks)
- * Composer: [axypro/callbacks](https://packagist.org/packages/axy/callbacks)
+ * Composer: [axy/callbacks](https://packagist.org/packages/axy/callbacks)
 
 Adds some features to the standard callbacks:
 

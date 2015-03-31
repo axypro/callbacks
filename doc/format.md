@@ -2,7 +2,7 @@
 
 Callback format which provides by the library is backward compatible with the standard format.
 
-Variants of [standard format](http://php.net/manual/en/language.types.callable.php):
+Variants of [the standard format](http://php.net/manual/en/language.types.callable.php):
 
 * string `"functionName"`
 * array `[$object, "methodName"]`
@@ -15,9 +15,9 @@ All of these variants are supported in the library.
 
 ## The numeric array
 
-[Bound arguments](args.md) are specified in the element with index 2 as numeric array.
+[Bound arguments](args.md) are specified in the element with index 2 as a numeric array.
 
-* `[$object, "methodName", $args]`: $object->methodName() with arguments from $args.
+* `[$object, "methodName", $args]`: calls `$object->methodName()` with arguments from `$args`.
 * `["ClassName", "staticMethodName", $args]`
 * `["ClassName::staticMethodName", null, $args]` - similar to the previous
 * `[null, "funcName", $args]` - global function (without class)

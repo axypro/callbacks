@@ -1,3 +1,7 @@
+### 1.0.2 (31.03.2015)
+
+* Some refs and docs
+
 ### 1.0.1 (09.02.2015)
 
 * @links to the documentation
