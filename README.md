@@ -9,10 +9,10 @@ Library does not require any dependencies (except composer packages).
 
 ## Documentation
 
-* [Callback format](format.md)
-* [Arguments binding](args.md)
-* [Context binding](bind.md)
-* [How to use](Callback.md)
+* [Callback format](doc/format.md)
+* [Arguments binding](doc/args.md)
+* [Context binding](doc/bind.md)
+* [How to use](doc/Callback.md)
 
 ## Examples
 
