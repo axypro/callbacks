@@ -100,7 +100,7 @@ class Callback
             } else {
                 throw new InvalidFormat('Invalid callback for bind context');
             }
-            $this->callable = true;
+            $this->isCallable = true;
         }
     }
 
@@ -132,10 +132,10 @@ class Callback
      */
     public function isCallable()
     {
-        if ($this->callable === null) {
-            $this->callable = is_callable($this->native, false);
+        if ($this->isCallable === null) {
+            $this->isCallable = is_callable($this->native, false);
         }
-        return $this->callable;
+        return $this->isCallable;
     }
 
     /**
@@ -156,5 +156,5 @@ class Callback
     /**
      * @var boolean
      */
-    private $callable;
+    private $isCallable;
 }

@@ -1,3 +1,7 @@
+### 1.0.3 (10.11.2015)
+
+* Exclude tests, docs and etc from GitHub zip and Composer package dist.
+
 ### 1.0.2 (31.03.2015)
 
 * Some refs and docs

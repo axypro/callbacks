@@ -5,7 +5,7 @@
 
 PHP 5.4+
 
-Library does not require any dependencies (except composer packages).
+The library does not require any dependencies (except composer packages).
 
 ## Documentation
 
