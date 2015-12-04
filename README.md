@@ -1,5 +1,10 @@
 # axy\callbacks: the callback extended format
 
+[![Latest Stable Version](https://img.shields.io/packagist/v/axy/callbacks.svg?style=flat-square)](https://packagist.org/packages/axy/callbacks)
+[![Minimum PHP Version](https://img.shields.io/badge/php-%3E%3D%205.4-8892BF.svg?style=flat-square)](https://php.net/)
+[![Build Status](https://img.shields.io/travis/axypro/callbacks/master.svg?style=flat-square)](https://travis-ci.org/axypro/callbacks)
+
+
  * GitHub: [axypro/callbacks](https://github.com/axypro/callbacks)
  * Composer: [axy/callbacks](https://packagist.org/packages/axy/callbacks)
 
